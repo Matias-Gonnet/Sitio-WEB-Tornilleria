@@ -121,7 +121,7 @@
   lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
 
   /* ---- Imágenes faltantes: muestra un recuadro con el nombre esperado ---- */
-  $$('img').forEach(img => {
+  $$('img[src]:not(#lbImg)').forEach(img => {
     const fail = () => {
       const host = img.closest('.shot, .about-photo, .hero-logo') || img.parentElement;
       host.classList.add('img-missing');
