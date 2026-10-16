@@ -104,6 +104,10 @@
   }
   menuBtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
   links.forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', e => {
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+  });
 
   /* ---- Galería / lightbox ---- */
   const lb = $('#lightbox');

@@ -21,8 +21,8 @@
   </a>
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
   <nav class="menu" id="menu">
-    <a href="#catalogo">Catálogo</a>
     <a href="#nosotros">Nosotros</a>
+    <a href="#catalogo">Catálogo</a>
     <a href="#contacto" class="menu-cta">Contacto</a>
   </nav>
 </header>
@@ -43,16 +43,7 @@
     <div class="rod" aria-hidden="true"></div>
   </section>
 
-  <section class="section" id="catalogo">
-    <div class="wrap">
-      <h2>Catálogo</h2>
-      <p class="section-sub">Algunas de las líneas que trabajamos. Si no ves lo que buscás, consultanos: <a href="tel:+59844724151">4472 4151</a>.</p>
-      <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
-      <div class="grid" id="grid"></div>
-    </div>
-  </section>
-
-  <section class="section alt" id="nosotros">
+  <section class="section" id="nosotros">
     <div class="wrap about">
       <figure class="about-photo">
         <img src="imagenes/Fachada.png" alt="Fachada de Tornillería Dos-Mil en Monterroso 115, Rocha">
@@ -74,6 +65,15 @@
         <button class="shot" data-full="imagenes/Foto_2.png" data-alt="Interior del local, vista 2"><img src="imagenes/Foto_2.png" alt="Interior del local, vista 2" loading="lazy"></button>
         <button class="shot" data-full="imagenes/Foto_3.png" data-alt="Interior del local, vista 3"><img src="imagenes/Foto_3.png" alt="Interior del local, vista 3" loading="lazy"></button>
       </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="catalogo">
+    <div class="wrap">
+      <h2>Catálogo</h2>
+      <p class="section-sub">Algunas de las líneas que trabajamos. Si no ves lo que buscás, consultanos: <a href="tel:+59844724151">4472 4151</a>.</p>
+      <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
+      <div class="grid" id="grid"></div>
     </div>
   </section>
 
@@ -109,6 +109,11 @@
     <p>Tornillería Dos-Mil · Monterroso n.° 115, Rocha · Tel: 4472 4151</p>
   </div>
 </footer>
+
+<dialog class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Cerrar imagen">&times;</button>
+  <img id="lbImg" src="" alt="">
+</dialog>
 
 <script src="js/main.js"></script>
 </body>
