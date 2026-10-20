@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de Materiales y Herramientas Utiles | Tornillería Dos-Mil</title>
+<meta name="description" content="Calculá materiales de construcción (bloques, mezcla, contrapisos), convertí medidas de tornillería y consultá la guía de fijaciones en Rocha.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="imagenes/Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .calc-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.8rem; display: flex; flex-direction: column; justify-content: space-between; }
+  .calc-card h3 { color: var(--orange); margin-bottom: 0.5rem; }
+  .calc-card p { color: var(--muted); font-size: 0.95rem; margin-top: 0; }
+  .calc-form { display: grid; gap: 1rem; margin-top: 1rem; }
+  .calc-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .calc-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; font-weight: 500; }
+  .calc-form input, .calc-form select { font: inherit; color: var(--text); background: var(--black); border: 1.5px solid var(--line); border-radius: 6px; padding: 0.6rem 0.8rem; }
+  .calc-form input:focus, .calc-form select:focus { outline: none; border-color: var(--orange); }
+  .res-box { margin-top: 1.2rem; background: rgba(251, 125, 48, 0.08); border-left: 4px solid var(--orange); padding: 1rem; border-radius: 4px; }
+  .res-box h4 { margin: 0 0 0.5rem 0; font-family: var(--display); font-size: 1.3rem; }
+  .res-box ul { margin: 0; padding-left: 1.2rem; color: var(--text); font-size: 0.95rem; }
+  .res-box ul li { margin-bottom: 0.2rem; }
+  .tab-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line); padding-bottom: 0.8rem; }
+  .tab-btn { background: transparent; border: 1px solid var(--line); color: var(--text); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; }
+  .tab-btn.active { background: var(--orange); color: #000; border-color: var(--orange); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="rod-progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="index.html" aria-label="Tornillería Dos-Mil, inicio">
+    <span class="brand-badge"><img src="imagenes/Logo.png" alt="Tornillería Dos-Mil"></span>
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  <nav class="menu" id="menu">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#nosotros">Nosotros</a>
+    <a href="catalogo.html">Catálogo</a>
+    <a href="herramientas.html" class="active">Calculadora & Herramientas</a>
+    <a href="contacto.html" class="menu-cta">Contacto</a>
+  </nav>
+</header>
+
+<main>
+  <section class="section" style="padding-top: calc(var(--nav-h) + 2rem);">
+    <div class="wrap">
+      <h2>Herramientas y Calculadoras</h2>
+      <p class="section-sub">Planificá tus compras de obra, convertí medidas de tornillería y consultá qué fijación necesitas según tu superficie.</p>
+
+      <!-- TAB SECTIONS -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="showTab('calc-sec', this)">Calculadora de Materiales</button>
+        <button class="tab-btn" onclick="showTab('conversor-sec', this)">Conversor de Medidas</button>
+        <button class="tab-btn" onclick="showTab('fijaciones-sec', this)">Guía de Fijaciones</button>
+      </div>
+
+      <!-- 1. CALCULADORA DE MATERIALES -->
+      <div id="calc-sec" class="tab-content">
+        <div class="tools-grid">
+          
+          <!-- Calculadora Muros -->
+          <article class="calc-card">
+            <div>
+              <h3>1. Paredes y Muros</h3>
+              <p>Estimación de bloques/ladrillos y mortero para levantar muros.</p>
+              <form class="calc-form" id="formMuro">
+                <div class="row">
+                  <label>Ancho (m)
+                    <input type="number" id="muroAncho" step="0.1" min="0.1" value="4" required>
+                  </label>
+                  <label>Alto (m)
+                    <input type="number" id="muroAlto" step="0.1" min="0.1" value="2.5" required>
+                  </label>
+                </div>
+                <label>Tipo de mampuesto
+                  <select id="muroTipo">
+                    <option value="bloque12">Bloque de hormigón (12x19x39 cm)</option>
+                    <option value="bloque15">Bloque de hormigón (15x19x39 cm)</option>
+                    <option value="ladrilloComun">Ladrillo común de campo</option>
+                    <option value="ticholo8">Ticholo (8x25x25 cm)</option>
+                    <option value="ticholo12">Ticholo (12x25x25 cm)</option>
+                  </select>
+                </label>
+                <button type="button" class="btn btn-primary" onclick="calcularMuro()" style="margin-top:0.5rem;">Calcular Muro</button>
+              </form>
+            </div>
+            <div class="res-box" id="resMuro" style="display:none;">
+              <h4>Materiales estimados:</h4>
+              <ul id="listMuro"></ul>
+              <small style="color:var(--muted); display:block; margin-top:0.5rem;">*Incluye 5% de desperdicio.</small>
+            </div>
+          </article>
+
+          <!-- Calculadora Contrapiso / Carpeta -->
+          <article class="calc-card">
+            <div>
+              <h3>2. Contrapiso o Carpeta</h3>
+              <p>Cálculo de volumen para pisos, veredas o contrapisos.</p>
+              <form class="calc-form" id="formPiso">
+                <div class="row">
+                  <label>Superficie (m²)
+                    <input type="number" id="pisoM2" step="0.1" min="0.1" value="15" required>
+                  </label>
+                  <label>Espesor (cm)
+                    <input type="number" id="pisoEspesor" step="1" min="1" value="8" required>
+                  </label>
+                </div>
+                <label>Tipo de trabajo
+                  <select id="pisoTipo">
+                    <option value="contrapiso">Contrapiso (Portland + Arena + Pedregullo)</option>
+                    <option value="carpeta">Carpeta / Mortero (Portland + Arena)</option>
+                  </select>
+                </label>
+                <button type="button" class="btn btn-primary" onclick="calcularPiso()" style="margin-top:0.5rem;">Calcular Hormigón</button>
+              </form>
+            </div>
+            <div class="res-box" id="resPiso" style="display:none;">
+              <h4>Materiales estimados:</h4>
+              <ul id="listPiso"></ul>
+              <small style="color:var(--muted); display:block; margin-top:0.5rem;">*Valores orientativos estándar de obra.</small>
+            </div>
+          </article>
+
+          <!-- Calculadora Revoque -->
+          <article class="calc-card">
+            <div>
+              <h3>3. Revoques</h3>
+              <p>Paredes interiores y exteriores (grueso + fino).</p>
+              <form class="calc-form" id="formRevoque">
+                <label>Superficie a revocar (m²)
+                  <input type="number" id="revM2" step="0.5" min="0.5" value="20" required>
+                </label>
+                <label>Tipo de revoque
+                  <select id="revTipo">
+                    <option value="grueso">Revoque grueso (1.5 cm)</option>
+                    <option value="fino">Revoque fino / Terminado (0.5 cm)</option>
+                    <option value="ambos">Grueso + Fino completo</option>
+                  </select>
+                </label>
+                <button type="button" class="btn btn-primary" onclick="calcularRevoque()" style="margin-top:0.5rem;">Calcular Revoque</button>
+              </form>
+            </div>
+            <div class="res-box" id="resRevoque" style="display:none;">
+              <h4>Materiales estimados:</h4>
+              <ul id="listRevoque"></ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 2. CONVERSOR DE MEDIDAS -->
+      <div id="conversor-sec" class="tab-content" style="display:none;">
+        <div class="tools-grid">
+          
+          <article class="calc-card">
+            <div>
+              <h3>Pulgadas a Milímetros</h3>
+              <p>Ideal para medir diámetros y largos de tornillos y bulones.</p>
+              <form class="calc-form">
+                <label>Medida en pulgadas
+                  <select id="inchVal" onchange="convertirPulgadas()">
+                    <option value="0.125">1/8" (3.17 mm)</option>
+                    <option value="0.1875">3/16" (4.76 mm)</option>
+                    <option value="0.25" selected>1/4" (6.35 mm)</option>
+                    <option value="0.3125">5/16" (7.94 mm)</option>
+                    <option value="0.375">3/8" (9.52 mm)</option>
+                    <option value="0.5">1/2" (12.70 mm)</option>
+                    <option value="0.625">5/8" (15.87 mm)</option>
+                    <option value="0.75">3/4" (19.05 mm)</option>
+                    <option value="1">1" (25.40 mm)</option>
+                  </select>
+                </label>
+              </form>
+            </div>
+            <div class="res-box" style="margin-top:1rem;">
+              <h4 id="resInch">Resultado: 6.35 mm</h4>
+            </div>
+          </article>
+
+          <article class="calc-card">
+            <div>
+              <h3>Calibre / Calibre de Chapas</h3>
+              <p>Espesor equivalente en mm para chapas de techos o perfiles.</p>
+              <form class="calc-form">
+                <label>Calibre de chapa (Gauge)
+                  <select id="gaugeVal" onchange="convertirGauge()">
+                    <option value="26">Calibre 26 (~0.45 mm)</option>
+                    <option value="24" selected>Calibre 24 (~0.55 mm)</option>
+                    <option value="22">Calibre 22 (~0.70 mm)</option>
+                    <option value="20">Calibre 20 (~0.90 mm)</option>
+                    <option value="18">Calibre 18 (~1.20 mm)</option>
+                    <option value="16">Calibre 16 (~1.50 mm)</option>
+                  </select>
+                </label>
+              </form>
+            </div>
+            <div class="res-box" style="margin-top:1rem;">
+              <h4 id="resGauge">Espesor aprox: 0.55 mm</h4>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 3. GUÍA RÁPIDA DE FIJACIONES -->
+      <div id="fijaciones-sec" class="tab-content" style="display:none;">
+        <div class="calc-card" style="max-width: 700px; margin: 0 auto;">
+          <h3>¿Qué vas a amurar y sobre qué superficie?</h3>
+          <p>Seleccioná la pared o material de base para ver el tipo de taco/tarugo y tornillo sugerido.</p>
+          <form class="calc-form">
+            <label>Tipo de pared / Base
+              <select id="baseMat" onchange="buscarFijacion()">
+                <option value="ladrilloComun">Pared de Ladrillo Común</option>
+                <option value="bloqueHueco">Bloque de Hormigón / Ticholo Hueco</option>
+                <option value="durlock">Placa de Yeso (Durlock / Gyplac)</option>
+                <option value="hormigon">Hormigón Macizo / Viga</option>
+                <option value="chapa">Estructura de Metal / Perfil C / Chapa</option>
+              </select>
+            </label>
+          </form>
+          <div class="res-box" id="resFijacion" style="margin-top:1.5rem;">
+            <!-- Carga por defecto -->
+            <h4>Recomendación:</h4>
+            <ul>
+              <li><strong>Tarugo:</strong> Tarugo común de nylon (N-6 / N-8 con tope) o tarugo para ladrillo macizo.</li>
+              <li><strong>Tornillo:</strong> Tornillo para madera/multiuso de cabeza fresada o tirafondo según el peso.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <img src="imagenes/Logo.png" alt="" class="footer-logo">
+    <p>Tornillería Dos-Mil · Monterroso n.° 115, Rocha · Tel: 4472 4151</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  /* Cambio de pestañas */
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).style.display = 'block';
+    btn.classList.add('active');
+  }
+
+  /* 1. Cálculo de Muro */
+  function calcularMuro() {
+    const ancho = parseFloat(document.getElementById('muroAncho').value) || 0;
+    const alto = parseFloat(document.getElementById('muroAlto').value) || 0;
+    const tipo = document.getElementById('muroTipo').value;
+    const area = ancho * alto;
+    let cantUnidades = 0, portlandBolsas = 0, arenaM3 = 0, tipoNombre = '';
+
+    if (tipo.startsWith('bloque')) {
+      cantUnidades = Math.ceil(area * 12.5 * 1.05); // 12.5 bloques por m2
+      portlandBolsas = (area * 0.15).toFixed(1);
+      arenaM3 = (area * 0.015).toFixed(2);
+      tipoNombre = 'Bloques de hormigón';
+    } else if (tipo === 'ladrilloComun') {
+      cantUnidades = Math.ceil(area * 55 * 1.05); // ~55 por m2
+      portlandBolsas = (area * 0.3).toFixed(1);
+      arenaM3 = (area * 0.03).toFixed(2);
+      tipoNombre = 'Ladrillos comunes';
+    } else { // Ticholos
+      cantUnidades = Math.ceil(area * 15 * 1.05); // ~15 por m2
+      portlandBolsas = (area * 0.18).toFixed(1);
+      arenaM3 = (area * 0.02).toFixed(2);
+      tipoNombre = 'Ticholos';
+    }
+
+    const list = document.getElementById('listMuro');
+    list.innerHTML = `
+      <li><strong>${cantUnidades} u.</strong> de ${tipoNombre} (área: ${area.toFixed(1)} m²)</li>
+      <li><strong>${portlandBolsas} bolsa(s)</strong> de Portland / Cemento (25 kg)</li>
+      <li><strong>${arenaM3} m³</strong> de Arena gruesa / sucia</li>
+    `;
+    document.getElementById('resMuro').style.display = 'block';
+  }
+
+  /* 2. Cálculo de Contrapiso */
+  function calcularPiso() {
+    const m2 = parseFloat(document.getElementById('pisoM2').value) || 0;
+    const espesorCm = parseFloat(document.getElementById('pisoEspesor').value) || 0;
+    const tipo = document.getElementById('pisoTipo').value;
+    const m3 = m2 * (espesorCm / 100);
+
+    let portland = 0, arena = 0, pedregullo = 0;
+
+    if (tipo === 'contrapiso') {
+      portland = Math.ceil(m3 * 6); // ~6 bolsas por m3
+      arena = (m3 * 0.55).toFixed(2);
+      pedregullo = (m3 * 0.85).toFixed(2);
+    } else { // carpeta
+      portland = Math.ceil(m3 * 9.5); // ~9.5 bolsas por m3
+      arena = (m3 * 1.05).toFixed(2);
+    }
+
+    const list = document.getElementById('listPiso');
+    let html = `
+      <li>Volumen total: <strong>${m3.toFixed(2)} m³</strong></li>
+      <li><strong>${portland} bolsa(s)</strong> de Cemento / Portland</li>
+      <li><strong>${arena} m³</strong> de Arena fina / media</li>
+    `;
+    if (pedregullo > 0) html += `<li><strong>${pedregullo} m³</strong> de Pedregullo / Balasto</li>`;
+    
+    list.innerHTML = html;
+    document.getElementById('resPiso').style.display = 'block';
+  }
+
+  /* 3. Revoque */
+  function calcularRevoque() {
+    const m2 = parseFloat(document.getElementById('revM2').value) || 0;
+    const tipo = document.getElementById('revTipo').value;
+
+    let portland = 0, arena = 0, cal = 0;
+
+    if (tipo === 'grueso') {
+      portland = (m2 * 0.12).toFixed(1);
+      cal = (m2 * 0.25).toFixed(1);
+      arena = (m2 * 0.02).toFixed(2);
+    } else if (tipo === 'fino') {
+      portland = (m2 * 0.05).toFixed(1);
+      cal = (m2 * 0.15).toFixed(1);
+      arena = (m2 * 0.008).toFixed(2);
+    } else {
+      portland = (m2 * 0.17).toFixed(1);
+      cal = (m2 * 0.40).toFixed(1);
+      arena = (m2 * 0.028).toFixed(2);
+    }
+
+    const list = document.getElementById('listRevoque');
+    list.innerHTML = `
+      <li><strong>${Math.ceil(portland)} bolsa(s)</strong> de Portland</li>
+      <li><strong>${Math.ceil(cal)} bolsa(s)</strong> de Cal fina / hidratada</li>
+      <li><strong>${arena} m³</strong> de Arena fina filtrada</li>
+    `;
+    document.getElementById('resRevoque').style.display = 'block';
+  }
+
+  /* Conversores */
+  function convertirPulgadas() {
+    const val = parseFloat(document.getElementById('inchVal').value);
+    const mm = (val * 25.4).toFixed(2);
+    document.getElementById('resInch').textContent = `Resultado: ${mm} mm`;
+  }
+  function convertirGauge() {
+    const text = document.getElementById('gaugeVal').options[document.getElementById('gaugeVal').selectedIndex].text;
+    document.getElementById('resGauge').textContent = text;
+  }
+
+  /* Guía de fijaciones */
+  function buscarFijacion() {
+    const val = document.getElementById('baseMat').value;
+    const res = document.getElementById('resFijacion');
+    const data = {
+      ladrilloComun: { taco: 'Tarugo Py (de aletas/expansión) o Tarugo SX de 6/8 mm', tornillo: 'Tornillo fix / para madera de 4.5x50mm o tirafondo de 1/4"' },
+      bloqueHueco: { taco: 'Tarugo para hueco (tipo Duopower o tipo tórax con cuello)', tornillo: 'Tornillo paso grueso o roscado para madera' },
+      durlock: { taco: 'Tarugo autoperforante para yeso (pico de pato o metál/nylon)', tornillo: 'Tornillo T1 o T2 de rosca fina' },
+      hormigon: { taco: 'Tarugo de expansión, Taco metálico de expansión o Anclaje químico', tornillo: 'Bulón de fijación o Tirafondo reforzado' },
+      chapa: { taco: 'No lleva tarugo (fijación directa)', tornillo: 'Tornillo Autoperforante T2 / T3 con arandela de neopreno' }
+    };
+    const sel = data[val];
+    res.innerHTML = `
+      <h4>Recomendación:</h4>
+      <ul>
+        <li><strong>Fijación / Tarugo:</strong> ${sel.taco}</li>
+        <li><strong>Tornillo adecuado:</strong> ${sel.tornillo}</li>
+      </ul>
+    `;
+  }
+</script>
+</body>
+</html>

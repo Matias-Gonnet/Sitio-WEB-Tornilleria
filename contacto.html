@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto | Tornillería Dos-Mil - Rocha</title>
+<meta name="description" content="Póngase en contacto con Tornillería Dos-Mil en Rocha. Dirección, teléfono, ubicación en mapa y formulario de consultas.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="imagenes/Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="rod-progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav scrolled" id="nav">
+  <a class="brand" href="index.html" aria-label="Tornillería Dos-Mil, inicio">
+    <span class="brand-badge"><img src="imagenes/Logo.png" alt="Tornillería Dos-Mil"></span>
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  <nav class="menu" id="menu">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#nosotros">Nosotros</a>
+    <a href="catalogo.html">Catálogo</a>
+    <a href="contacto.html" class="menu-cta active">Contacto</a>
+  </nav>
+</header>
+
+<main>
+  <section class="section" style="padding-top: calc(var(--nav-h) + 3rem);" id="contacto">
+    <div class="wrap contact">
+      <div class="contact-info">
+        <h2>Contacto</h2>
+        <dl>
+          <dt>Dirección</dt>
+          <dd>Monterroso n.° 115, Rocha</dd>
+          <dt>Teléfono</dt>
+          <dd><a href="tel:+59844724151">4472 4151</a></dd>
+        </dl>
+        <form class="form" id="form" novalidate>
+          <label>Nombre<input name="nombre" type="text" autocomplete="name" required></label>
+          <label>Teléfono<input name="telefono" type="tel" autocomplete="tel" required></label>
+          <label>¿Qué estás buscando?<textarea name="mensaje" rows="4" required></textarea></label>
+          <button class="btn btn-primary" type="submit">Enviar consulta</button>
+          <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div class="map">
+        <iframe title="Mapa de Tornillería Dos-Mil" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Monterroso%20115%2C%20Rocha%2C%20Uruguay&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <img src="imagenes/Logo.png" alt="" class="footer-logo">
+    <p>Tornillería Dos-Mil · Monterroso n.° 115, Rocha · Tel: 4472 4151</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

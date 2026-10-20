@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo | Tornillería Dos-Mil - Rocha</title>
+<meta name="description" content="Catálogo completo de tornillos, fijaciones, herramientas y materiales de barraca en Tornillería Dos-Mil, Rocha.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="imagenes/Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="rod-progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav scrolled" id="nav">
+  <a class="brand" href="index.html" aria-label="Tornillería Dos-Mil, inicio">
+    <span class="brand-badge"><img src="imagenes/Logo.png" alt="Tornillería Dos-Mil"></span>
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  <nav class="menu" id="menu">
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#nosotros">Nosotros</a>
+    <a href="catalogo.html" class="active">Catálogo</a>
+    <a href="index.html#contacto" class="menu-cta">Contacto</a>
+  </nav>
+</header>
+
+<main>
+  <section class="section alt" style="padding-top: calc(var(--nav-h) + 3rem);" id="catalogo">
+    <div class="wrap">
+      <h2>Catálogo de Productos</h2>
+      <p class="section-sub">Explorá nuestras líneas de tornillos, fijaciones, herramientas y artículos de barraca. Si necesitás asesoramiento o buscás una medida específica, consultanos al <a href="tel:+59844724151">4472 4151</a>.</p>
+      
+      <!-- Filtros -->
+      <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría">
+        <button class="chip" type="button" aria-pressed="true" data-filter="Todo">Todo</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="Tornillos">Tornillos</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="Fijaciones">Fijaciones</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="Tuercas y arandelas">Tuercas y arandelas</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="Herramientas">Herramientas</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="Barraca">Barraca</button>
+      </div>
+
+      <!-- Grid de productos -->
+      <div class="grid" id="grid">
+        <!-- Tornillos -->
+        <article class="card" data-category="Tornillos">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 3h24M24 3v6M16 9h16l-3 6H19zM19 15l10 4M19 21l10 4M19 27l10 4M19 33l10 4M24 37v8"/></svg>
+          <h3>Tornillos para madera</h3>
+          <p>Distintos largos y diámetros para carpintería y muebles.</p>
+          <span class="tag">Tornillos</span>
+        </article>
+        <article class="card" data-category="Tornillos">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 3h24M24 3v6M16 9h16l-3 6H19zM19 15l10 4M19 21l10 4M19 27l10 4M19 33l10 4M24 37v8"/></svg>
+          <h3>Autoperforantes</h3>
+          <p>Para chapa y perfiles metálicos, sin pretaladrar.</p>
+          <span class="tag">Tornillos</span>
+        </article>
+        <article class="card" data-category="Tornillos">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 3h24M24 3v6M16 9h16l-3 6H19zM19 15l10 4M19 21l10 4M19 27l10 4M19 33l10 4M24 37v8"/></svg>
+          <h3>Bulones hexagonales</h3>
+          <p>Cabeza hexagonal para estructuras y montajes.</p>
+          <span class="tag">Tornillos</span>
+        </article>
+        <article class="card" data-category="Tornillos">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 3h24M24 3v6M16 9h16l-3 6H19zM19 15l10 4M19 21l10 4M19 27l10 4M19 33l10 4M24 37v8"/></svg>
+          <h3>Tirafondos</h3>
+          <p>Fijación firme en madera para cargas pesadas.</p>
+          <span class="tag">Tornillos</span>
+        </article>
+
+        <!-- Fijaciones -->
+        <article class="card" data-category="Fijaciones">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="9" rx="2"/><path d="M18 15v22l6 6 6-6V15M18 23h12M18 30h12"/></svg>
+          <h3>Tarugos y tacos</h3>
+          <p>Para amurar en pared y hormigón.</p>
+          <span class="tag">Fijaciones</span>
+        </article>
+        <article class="card" data-category="Fijaciones">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="9" rx="2"/><path d="M18 15v22l6 6 6-6V15M18 23h12M18 30h12"/></svg>
+          <h3>Anclajes de expansión</h3>
+          <p>Soporte seguro para cargas en hormigón.</p>
+          <span class="tag">Fijaciones</span>
+        </article>
+        <article class="card" data-category="Fijaciones">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="9" rx="2"/><path d="M18 15v22l6 6 6-6V15M18 23h12M18 30h12"/></svg>
+          <h3>Clavos y grapas</h3>
+          <p>Surtido para obra, tapicería y carpintería.</p>
+          <span class="tag">Fijaciones</span>
+        </article>
+        <article class="card" data-category="Fijaciones">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="9" rx="2"/><path d="M18 15v22l6 6 6-6V15M18 23h12M18 30h12"/></svg>
+          <h3>Remaches</h3>
+          <p>Uniones rápidas en chapa y metal.</p>
+          <span class="tag">Fijaciones</span>
+        </article>
+
+        <!-- Tuercas y arandelas -->
+        <article class="card" data-category="Tuercas y arandelas">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4l17 10v20L24 44 7 34V14z"/><circle cx="24" cy="24" r="7"/></svg>
+          <h3>Tuercas</h3>
+          <p>Hexagonales, mariposa, autofrenantes y más.</p>
+          <span class="tag">Tuercas y arandelas</span>
+        </article>
+        <article class="card" data-category="Tuercas y arandelas">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4l17 10v20L24 44 7 34V14z"/><circle cx="24" cy="24" r="7"/></svg>
+          <h3>Arandelas</h3>
+          <p>Planas y de presión, en varias medidas.</p>
+          <span class="tag">Tuercas y arandelas</span>
+        </article>
+        <article class="card" data-category="Tuercas y arandelas">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4l17 10v20L24 44 7 34V14z"/><circle cx="24" cy="24" r="7"/></svg>
+          <h3>Varilla roscada</h3>
+          <p>Por metro, para soportes y montajes.</p>
+          <span class="tag">Tuercas y arandelas</span>
+        </article>
+
+        <!-- Herramientas -->
+        <article class="card" data-category="Herramientas">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M30 6a10 10 0 0 0-9 14L6 35a4 4 0 0 0 6 6l15-15a10 10 0 0 0 14-9l-7 5-5-5 5-7z"/></svg>
+          <h3>Destornilladores y puntas</h3>
+          <p>Para uso manual y con atornillador.</p>
+          <span class="tag">Herramientas</span>
+        </article>
+        <article class="card" data-category="Herramientas">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M30 6a10 10 0 0 0-9 14L6 35a4 4 0 0 0 6 6l15-15a10 10 0 0 0 14-9l-7 5-5-5 5-7z"/></svg>
+          <h3>Llaves y alicates</h3>
+          <p>Para mecánica, plomería y electricidad.</p>
+          <span class="tag">Herramientas</span>
+        </article>
+        <article class="card" data-category="Herramientas">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M30 6a10 10 0 0 0-9 14L6 35a4 4 0 0 0 6 6l15-15a10 10 0 0 0 14-9l-7 5-5-5 5-7z"/></svg>
+          <h3>Brocas y discos</h3>
+          <p>Para perforar, cortar y desbastar.</p>
+          <span class="tag">Herramientas</span>
+        </article>
+
+        <!-- Barraca -->
+        <article class="card" data-category="Barraca">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 18l19-10 19 10M9 18v22h30V18M17 40V28h14v12M5 18h38"/></svg>
+          <h3>Cadenas y cables de acero</h3>
+          <p>Para sujeción, izaje y cerramientos.</p>
+          <span class="tag">Barraca</span>
+        </article>
+        <article class="card" data-category="Barraca">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 18l19-10 19 10M9 18v22h30V18M17 40V28h14v12M5 18h38"/></svg>
+          <h3>Alambres y mallas</h3>
+          <p>Para cercos, construcción y huerta.</p>
+          <span class="tag">Barraca</span>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <img src="imagenes/Logo.png" alt="" class="footer-logo">
+    <p>Tornillería Dos-Mil · Monterroso n.° 115, Rocha · Tel: 4472 4151</p>
+  </div>
+</footer>
+
+<script>
+  // Script sencillo para manejar el filtrado de tarjetas en la página de catálogo estática
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.filters .chip');
+    const cards = document.querySelectorAll('.grid .card');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        
+        buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'Todo' || category === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Menú hamburguesa básico para móviles
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    if (menuBtn && menu) {
+      menuBtn.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', open);
+      });
+    }
+  });
+</script>
+</body>
+</html>
