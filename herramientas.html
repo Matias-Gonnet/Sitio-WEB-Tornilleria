@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calculadora de Materiales y Herramientas Utiles | Tornillería Dos-Mil</title>
+<title>Calculadora de Materiales y Herramientas Útiles | Tornillería Dos-Mil</title>
 <meta name="description" content="Calculá materiales de construcción (bloques, mezcla, contrapisos), convertí medidas de tornillería y consultá la guía de fijaciones en Rocha.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="imagenes/Logo.png">
@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 <style>
-.tools-grid { 
+  .tools-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); 
     gap: 1.5rem; 
@@ -112,22 +112,22 @@
     font-weight: 600; 
   }
 
-  /* Regla responsiva para adaptar casillas y filas en pantallas móviles */
   @media (max-width: 480px) {
     .calc-form .row {
       grid-template-columns: 1fr;
     }
-  }</style>
+  }
+</style>
 </head>
 <body>
 <div class="rod-progress" id="progress" aria-hidden="true"></div>
 
-<header class="nav" id="nav">
+<header class="nav scrolled" id="nav">
   <a class="brand" href="index.html" aria-label="Tornillería Dos-Mil, inicio">
     <span class="brand-badge"><img src="imagenes/Logo.png" alt="Tornillería Dos-Mil"></span>
   </a>
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
-<nav class="menu" id="menu">
+  <nav class="menu" id="menu">
     <a href="index.html">Inicio</a>
     <a href="index.html#nosotros">Nosotros</a>
     <a href="catalogo.html">Catálogo</a>
@@ -137,10 +137,10 @@
 </header>
 
 <main>
-  <section class="section" style="padding-top: calc(var(--nav-h) + 2rem);">
+  <section class="section" style="padding-top: calc(var(--nav-h) + 3rem);">
     <div class="wrap">
       <h2>Herramientas y Calculadoras</h2>
-      <p class="section-sub">Planificá tus compras de obra, convertí medidas de tornillería y consultá qué fijación necesitas según tu superficie.</p>
+      <p class="section-sub">Planificá tus compras de obra, convertí medidas de tornillería y consultá qué fijación necesitás según tu superficie.</p>
 
       <!-- TAB SECTIONS -->
       <div class="tab-nav">
@@ -275,10 +275,10 @@
 
           <article class="calc-card">
             <div>
-              <h3>Calibre / Calibre de Chapas</h3>
+              <h3>Calibre de Chapas (Gauge)</h3>
               <p>Espesor equivalente en mm para chapas de techos o perfiles.</p>
               <form class="calc-form">
-                <label>Calibre de chapa (Gauge)
+                <label>Calibre de chapa
                   <select id="gaugeVal" onchange="convertirGauge()">
                     <option value="26">Calibre 26 (~0.45 mm)</option>
                     <option value="24" selected>Calibre 24 (~0.55 mm)</option>
@@ -315,7 +315,6 @@
             </label>
           </form>
           <div class="res-box" id="resFijacion" style="margin-top:1.5rem;">
-            <!-- Carga por defecto -->
             <h4>Recomendación:</h4>
             <ul>
               <li><strong>Tarugo:</strong> Tarugo común de nylon (N-6 / N-8 con tope) o tarugo para ladrillo macizo.</li>
@@ -338,7 +337,6 @@
 
 <script src="js/main.js"></script>
 <script>
-  /* Cambio de pestañas */
   function showTab(id, btn) {
     document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -346,7 +344,6 @@
     btn.classList.add('active');
   }
 
-  /* 1. Cálculo de Muro */
   function calcularMuro() {
     const ancho = parseFloat(document.getElementById('muroAncho').value) || 0;
     const alto = parseFloat(document.getElementById('muroAlto').value) || 0;
@@ -355,17 +352,17 @@
     let cantUnidades = 0, portlandBolsas = 0, arenaM3 = 0, tipoNombre = '';
 
     if (tipo.startsWith('bloque')) {
-      cantUnidades = Math.ceil(area * 12.5 * 1.05); // 12.5 bloques por m2
+      cantUnidades = Math.ceil(area * 12.5 * 1.05);
       portlandBolsas = (area * 0.15).toFixed(1);
       arenaM3 = (area * 0.015).toFixed(2);
       tipoNombre = 'Bloques de hormigón';
     } else if (tipo === 'ladrilloComun') {
-      cantUnidades = Math.ceil(area * 55 * 1.05); // ~55 por m2
+      cantUnidades = Math.ceil(area * 55 * 1.05);
       portlandBolsas = (area * 0.3).toFixed(1);
       arenaM3 = (area * 0.03).toFixed(2);
       tipoNombre = 'Ladrillos comunes';
-    } else { // Ticholos
-      cantUnidades = Math.ceil(area * 15 * 1.05); // ~15 por m2
+    } else {
+      cantUnidades = Math.ceil(area * 15 * 1.05);
       portlandBolsas = (area * 0.18).toFixed(1);
       arenaM3 = (area * 0.02).toFixed(2);
       tipoNombre = 'Ticholos';
@@ -380,7 +377,6 @@
     document.getElementById('resMuro').style.display = 'block';
   }
 
-  /* 2. Cálculo de Contrapiso */
   function calcularPiso() {
     const m2 = parseFloat(document.getElementById('pisoM2').value) || 0;
     const espesorCm = parseFloat(document.getElementById('pisoEspesor').value) || 0;
@@ -390,11 +386,11 @@
     let portland = 0, arena = 0, pedregullo = 0;
 
     if (tipo === 'contrapiso') {
-      portland = Math.ceil(m3 * 6); // ~6 bolsas por m3
+      portland = Math.ceil(m3 * 6);
       arena = (m3 * 0.55).toFixed(2);
       pedregullo = (m3 * 0.85).toFixed(2);
-    } else { // carpeta
-      portland = Math.ceil(m3 * 9.5); // ~9.5 bolsas por m3
+    } else {
+      portland = Math.ceil(m3 * 9.5);
       arena = (m3 * 1.05).toFixed(2);
     }
 
@@ -410,7 +406,6 @@
     document.getElementById('resPiso').style.display = 'block';
   }
 
-  /* 3. Revoque */
   function calcularRevoque() {
     const m2 = parseFloat(document.getElementById('revM2').value) || 0;
     const tipo = document.getElementById('revTipo').value;
@@ -440,7 +435,6 @@
     document.getElementById('resRevoque').style.display = 'block';
   }
 
-  /* Conversores */
   function convertirPulgadas() {
     const val = parseFloat(document.getElementById('inchVal').value);
     const mm = (val * 25.4).toFixed(2);
@@ -451,14 +445,13 @@
     document.getElementById('resGauge').textContent = text;
   }
 
-  /* Guía de fijaciones */
   function buscarFijacion() {
     const val = document.getElementById('baseMat').value;
     const res = document.getElementById('resFijacion');
     const data = {
       ladrilloComun: { taco: 'Tarugo Py (de aletas/expansión) o Tarugo SX de 6/8 mm', tornillo: 'Tornillo fix / para madera de 4.5x50mm o tirafondo de 1/4"' },
       bloqueHueco: { taco: 'Tarugo para hueco (tipo Duopower o tipo tórax con cuello)', tornillo: 'Tornillo paso grueso o roscado para madera' },
-      durlock: { taco: 'Tarugo autoperforante para yeso (pico de pato o metál/nylon)', tornillo: 'Tornillo T1 o T2 de rosca fina' },
+      durlock: { taco: 'Tarugo autoperforante para yeso (pico de pato o metal/nylon)', tornillo: 'Tornillo T1 o T2 de rosca fina' },
       hormigon: { taco: 'Tarugo de expansión, Taco metálico de expansión o Anclaje químico', tornillo: 'Bulón de fijación o Tirafondo reforzado' },
       chapa: { taco: 'No lleva tarugo (fijación directa)', tornillo: 'Tornillo Autoperforante T2 / T3 con arandela de neopreno' }
     };
