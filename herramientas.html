@@ -12,23 +12,112 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 <style>
-  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-  .calc-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.8rem; display: flex; flex-direction: column; justify-content: space-between; }
-  .calc-card h3 { color: var(--orange); margin-bottom: 0.5rem; }
-  .calc-card p { color: var(--muted); font-size: 0.95rem; margin-top: 0; }
-  .calc-form { display: grid; gap: 1rem; margin-top: 1rem; }
-  .calc-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-  .calc-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; font-weight: 500; }
-  .calc-form input, .calc-form select { font: inherit; color: var(--text); background: var(--black); border: 1.5px solid var(--line); border-radius: 6px; padding: 0.6rem 0.8rem; }
-  .calc-form input:focus, .calc-form select:focus { outline: none; border-color: var(--orange); }
-  .res-box { margin-top: 1.2rem; background: rgba(251, 125, 48, 0.08); border-left: 4px solid var(--orange); padding: 1rem; border-radius: 4px; }
-  .res-box h4 { margin: 0 0 0.5rem 0; font-family: var(--display); font-size: 1.3rem; }
-  .res-box ul { margin: 0; padding-left: 1.2rem; color: var(--text); font-size: 0.95rem; }
-  .res-box ul li { margin-bottom: 0.2rem; }
-  .tab-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line); padding-bottom: 0.8rem; }
-  .tab-btn { background: transparent; border: 1px solid var(--line); color: var(--text); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; }
-  .tab-btn.active { background: var(--orange); color: #000; border-color: var(--orange); font-weight: 600; }
-</style>
+.tools-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); 
+    gap: 1.5rem; 
+    margin-top: 2rem; 
+  }
+  .calc-card { 
+    background: var(--surface); 
+    border: 1px solid var(--line); 
+    border-radius: 12px; 
+    padding: 1.8rem; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+  }
+  .calc-card h3 { 
+    color: var(--orange); 
+    margin-bottom: 0.5rem; 
+  }
+  .calc-card p { 
+    color: var(--muted); 
+    font-size: 0.95rem; 
+    margin-top: 0; 
+  }
+  .calc-form { 
+    display: grid; 
+    gap: 1rem; 
+    margin-top: 1rem; 
+  }
+  .calc-form .row { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 0.8rem; 
+  }
+  .calc-form label { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.3rem; 
+    font-size: 0.9rem; 
+    font-weight: 500; 
+  }
+  .calc-form input, .calc-form select { 
+    width: 100%;
+    max-width: 100%;
+    font: inherit; 
+    color: var(--text); 
+    background: var(--black); 
+    border: 1.5px solid var(--line); 
+    border-radius: 6px; 
+    padding: 0.6rem 0.8rem; 
+  }
+  .calc-form input:focus, .calc-form select:focus { 
+    outline: none; 
+    border-color: var(--orange); 
+  }
+  .res-box { 
+    margin-top: 1.2rem; 
+    background: rgba(251, 125, 48, 0.08); 
+    border-left: 4px solid var(--orange); 
+    padding: 1rem; 
+    border-radius: 4px; 
+  }
+  .res-box h4 { 
+    margin: 0 0 0.5rem 0; 
+    font-family: var(--display); 
+    font-size: 1.3rem; 
+  }
+  .res-box ul { 
+    margin: 0; 
+    padding-left: 1.2rem; 
+    color: var(--text); 
+    font-size: 0.95rem; 
+  }
+  .res-box ul li { 
+    margin-bottom: 0.2rem; 
+  }
+  .tab-nav { 
+    display: flex; 
+    gap: 0.5rem; 
+    flex-wrap: wrap; 
+    margin-bottom: 1.5rem; 
+    border-bottom: 1px solid var(--line); 
+    padding-bottom: 0.8rem; 
+  }
+  .tab-btn { 
+    background: transparent; 
+    border: 1px solid var(--line); 
+    color: var(--text); 
+    padding: 0.5rem 1rem; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-weight: 500; 
+  }
+  .tab-btn.active { 
+    background: var(--orange); 
+    color: #000; 
+    border-color: var(--orange); 
+    font-weight: 600; 
+  }
+
+  /* Regla responsiva para adaptar casillas y filas en pantallas móviles */
+  @media (max-width: 480px) {
+    .calc-form .row {
+      grid-template-columns: 1fr;
+    }
+  }</style>
 </head>
 <body>
 <div class="rod-progress" id="progress" aria-hidden="true"></div>
