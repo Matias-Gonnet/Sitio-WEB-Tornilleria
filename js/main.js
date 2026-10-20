@@ -4,7 +4,7 @@
   /* ---- Configuración de contacto (completar para activar el envío del formulario) ---- */
   const CONFIG = {
     email: '',       // ej: 'ventas@tuferreteria.com.uy'
-    whatsapp: ''     // ej: '59899123456' (código de país + número, sin + ni espacios)
+    whatsapp: '59899123456'     // Tu número de WhatsApp (código de país + número, sin + ni espacios)
   };
 
   /* ---- Catálogo (editar libremente) ---- */
@@ -37,24 +37,11 @@
     'Barraca': '<path d="M5 18l19-10 19 10M9 18v22h30V18M17 40V28h14v12M5 18h38"/>'
   };
 
-  const $ = (s, el = document) => el.querySelector(s);
-  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const $ = (s, el = document) => el.querySelector(s); const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
   /* ---- Catálogo con filtros ---- */
   const grid = $('#grid');
-  const filters = $('#filters');
-  let current = 'Todo';
-
-  function renderFilters() {
-    ['Todo', ...CATEGORIES].forEach(cat => {
-      const b = document.createElement('button');
-      b.className = 'chip';
-      b.type = 'button';
-      b.textContent = cat;
-      b.setAttribute('aria-pressed', cat === current);
-      b.addEventListener('click', () => {
-        current = cat;
-        $$('.chip', filters).forEach(c => c.setAttribute('aria-pressed', c === b));
+  const filters = $('#filters'); let current = 'Todo';    function renderFilters() { ['Todo', ...CATEGORIES].forEach(cat => { const b = document.createElement('button'); b.className = 'chip'; b.type = 'button'; b.textContent = cat; b.setAttribute('aria-pressed', cat === current); b.addEventListener('click', () => { current = cat; $$('.chip', filters).forEach(c => c.setAttribute('aria-pressed', c === b));
         renderProducts();
       });
       filters.appendChild(b);
@@ -80,8 +67,7 @@
   const nav = $('#nav');
   const progress = $('#progress');
   const menu = $('#menu');
-  const menuBtn = $('#menuBtn');
-  const links = $$('.menu a');
+  const menuBtn = $('#menuBtn'); const links = $$('.menu a');
   const sections = links.map(a => $(a.getAttribute('href')));
 
   function onScroll() {
@@ -111,17 +97,12 @@
 
   /* ---- Galería / lightbox ---- */
   const lb = $('#lightbox');
-  const lbImg = $('#lbImg');
-  $$('.shot').forEach(btn => btn.addEventListener('click', () => {
+  const lbImg = $('#lbImg'); $$('.shot').forEach(btn => btn.addEventListener('click', () => {
     lbImg.src = btn.dataset.full;
     lbImg.alt = btn.dataset.alt;
     lb.showModal();
   }));
-  $('#lbClose').addEventListener('click', () => lb.close());
-  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
-
-  /* ---- Imágenes faltantes: muestra un recuadro con el nombre esperado ---- */
-  $$('img[src]:not(#lbImg)').forEach(img => {
+  $('#lbClose').addEventListener('click', () => lb.close()); lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });    /* ---- Imágenes faltantes: muestra un recuadro con el nombre esperado ---- */ $$('img[src]:not(#lbImg)').forEach(img => {
     const fail = () => {
       const host = img.closest('.shot, .about-photo, .hero-logo') || img.parentElement;
       host.classList.add('img-missing');
@@ -133,12 +114,7 @@
 
   /* ---- Formulario ---- */
   const form = $('#form');
-  const msg = $('#formMsg');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    msg.className = 'form-msg';
-    let ok = true;
-    $$('input, textarea', form).forEach(f => {
+  const msg = $('#formMsg'); form.addEventListener('submit', e => { e.preventDefault(); msg.className = 'form-msg'; let ok = true; $$('input, textarea', form).forEach(f => {
       const bad = !f.value.trim();
       f.classList.toggle('invalid', bad);
       if (bad) ok = false;
@@ -146,7 +122,9 @@
     if (!ok) { msg.textContent = 'Completá todos los campos para enviar tu consulta.'; return; }
 
     const d = Object.fromEntries(new FormData(form));
-    const text = `Consulta desde la web\nNombre: ${d.nombre}\nTeléfono: ${d.telefono}\n${d.mensaje}`;
+    
+    // Mensaje estructurado con los datos ingresados por el cliente
+    const text = `Hola, mi nombre es *${d.nombre}*.\nMi teléfono es: ${d.telefono}\n\nConsulta:\n${d.mensaje}`;
 
     if (CONFIG.whatsapp) {
       window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
